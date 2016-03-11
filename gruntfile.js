@@ -1,5 +1,7 @@
 'use strict';
 
+var brfs = require('brfs');
+
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
@@ -16,8 +18,12 @@ module.exports = function (grunt) {
       },
       browserify: {
         dist: {
-          src: 'index.js',
-          dest: 'dist/ui-select-tree.js'
+          options:{
+            transform: [brfs]
+          },
+          files:{
+            'dist/ui-select-tree.js': ['index.js']
+          }
         }
       },
       uglify: {

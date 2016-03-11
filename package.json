@@ -4,6 +4,7 @@
   "description": "An angular module that extends ui-select module of the angular-ui toolkit, to provide selection in a tree instead of a flat list.",
   "main": "ui-select-tree.js",
   "devDependencies": {
+    "brfs": "^1.4.3",
     "grunt": "^0.4.5",
     "grunt-browserify": "^4.0.1",
     "grunt-bump": "^0.6.0",
