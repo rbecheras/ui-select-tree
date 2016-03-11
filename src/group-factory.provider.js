@@ -4,7 +4,7 @@ module.exports = [function(){
 
   var tree;
 
-  this.loadtree = function(data){
+  this.loadTree = function(data){
     tree = data;
   };
 
@@ -13,7 +13,7 @@ module.exports = [function(){
       load: function (id) {
         return tree[id];
       }
-    }
+    };
   };
 
 }];

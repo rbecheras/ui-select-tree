@@ -7,7 +7,7 @@ var uiSelectFocuserDirective = require('./ui-select-focuser.directive');
 var groupFactoryProvider = require('./group-factory.provider');
 
 
-var uiSelectTreeModule = angular.module('ui.select-tree', ['ui.select', 'ngSanitize']);
+var uiSelectTreeModule = angular.module('ui.selectTree', ['ui.select', 'ngSanitize']);
 
 uiSelectTreeModule.directive('uiSelectTree',uiSelectTreeDirective);
 uiSelectTreeModule.directive('uiSelectFocuser',uiSelectFocuserDirective);
