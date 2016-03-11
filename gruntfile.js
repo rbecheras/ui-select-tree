@@ -9,6 +9,8 @@ module.exports = function (grunt) {
       jshint: {
         options: {
           node: true,
+          browser: true,
+          browserify: true,
           globals: {
             'angular': true,
             '_': true
@@ -28,10 +30,35 @@ module.exports = function (grunt) {
       },
       uglify: {
         dist: {
+          options: {
+            report: 'min',
+            sourceMap: true
+          },
           files: {
             'dist/ui-select-tree.min.js': ['dist/ui-select-tree.js']
           }
         }
+      },
+      cssmin: {
+        options: {
+          report: true,
+          sourceMap: true
+        },
+        target: {
+          files:{
+            'dist/ui-select-tree.min.css': 'src/ui-select-tree.css'
+          }
+        }
+      },
+      copy: {
+        main: {
+          files: [{
+            expand: true,
+            cwd: 'src/',
+            src: ['ui-select-tree.css'],
+            dest: 'dist/'}
+          ],
+        },
       },
       bump: {
         options: {
@@ -53,5 +80,5 @@ module.exports = function (grunt) {
       },
     });
 
-    grunt.registerTask('default', ['jshint', 'browserify', 'uglify']);
+    grunt.registerTask('default', ['jshint', 'browserify', 'uglify', 'cssmin','copy']);
 };

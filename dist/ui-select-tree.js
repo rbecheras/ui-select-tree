@@ -51,6 +51,7 @@ module.exports = ['$timeout',function($timeout) {
 'use strict';
 
 module.exports = ['groupFactory','$timeout', function(groupFactory, $timeout) {
+
   return {
     restrict: 'E',
     scope: { model: '=' },
@@ -76,7 +77,7 @@ module.exports = ['groupFactory','$timeout', function(groupFactory, $timeout) {
         scope.$broadcast('uiSelectFocus');
       };
     },
-    templateUrl: '/ui-tree-select.html'
+    templateUrl: 'ui-select-tree.tpl.html'
   };
 }];
 
