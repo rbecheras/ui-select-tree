@@ -1,15 +1,29 @@
+'use strict';
 
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
       jshint: {
-        all: ['gruntfile.js', 'ui-select-tree.js']
+        options: {
+          node: true,
+          globals: {
+            'angular': true,
+            '_': true
+          }
+        },
+        all: ['gruntfile.js', 'index.js', 'src/**/*.js']
+      },
+      browserify: {
+        dist: {
+          src: 'index.js',
+          dest: 'dist/ui-select-tree.js'
+        }
       },
       uglify: {
         dist: {
           files: {
-            'ui-select-tree.min.js': ['ui-select-tree.js']
+            'dist/ui-select-tree.min.js': ['dist/ui-select-tree.js']
           }
         }
       },
@@ -33,5 +47,5 @@ module.exports = function (grunt) {
       },
     });
 
-    grunt.registerTask('default', ['jshint','uglify']);
+    grunt.registerTask('default', ['jshint', 'browserify', 'uglify']);
 };
