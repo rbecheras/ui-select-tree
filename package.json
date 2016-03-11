@@ -1,10 +1,12 @@
 {
   "name": "ui-select-tree",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An angular module that extends ui-select module of the angular-ui toolkit, to provide selection in a tree instead of a flat list.",
   "main": "ui-select-tree.js",
   "devDependencies": {
+    "brfs": "^1.4.3",
     "grunt": "^0.4.5",
+    "grunt-browserify": "^4.0.1",
     "grunt-bump": "^0.6.0",
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-contrib-uglify": "^0.10.0",
@@ -21,7 +23,12 @@
   "keywords": [
     "bower",
     "component",
-    "bower","angular","angular-ui","ui-select","bootstrap","directive"
+    "bower",
+    "angular",
+    "angular-ui",
+    "ui-select",
+    "bootstrap",
+    "directive"
   ],
   "author": "Rémi Becheras <rbecheras@sirap.fr>",
   "license": "MIT",

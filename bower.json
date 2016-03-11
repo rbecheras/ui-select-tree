@@ -1,6 +1,6 @@
 {
   "name": "ui-select-tree",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "authors": [
     "Rémi Becheras <rbecheras@sirap.fr>"
   ],
@@ -9,7 +9,12 @@
   "keywords": [
     "bower",
     "component",
-    "bower","angular","angular-ui","ui-select","bootstrap","directive"
+    "bower",
+    "angular",
+    "angular-ui",
+    "ui-select",
+    "bootstrap",
+    "directive"
   ],
   "license": "MIT",
   "ignore": [
@@ -18,5 +23,14 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-sanitize": "~1.5.0",
+    "angular-ui": "~0.4.0",
+    "font-awesome": "fontawesome#~4.5.0",
+    "lodash": "~4.6.1",
+    "selectize": "~0.12.1",
+    "ui-select": "angular-ui-select#~0.14.9"
+  }
 }

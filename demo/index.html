@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Demo UI Select Tree</title>
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../bower_components/ui-select/dist/select.css">
+    <link rel="stylesheet" href="../bower_components/selectize/dist/css/selectize.bootstrap3.css">
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css">
+
+    <!-- vendor dependencies -->
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script type="text/javascript" src="../bower_components/ui-select/dist/select.js"></script>
+    <script type="text/javascript" src="../bower_components/lodash/lodash.js"></script>
+
+    <!-- ui-select-tree dependencies -->
+    <script type="text/javascript" src="../dist/ui-select-tree.js"></script>
+
+    <!-- demo app -->
+    <script type="text/javascript" src="demo.js"></script>
+  </head>
+  <body>
+
+  <main ng-app="demo" ng-init="model = {}">
+
+    <ui-tree-select model="model">
+    </ui-tree-select>
+
+    <pre>Model: {{ model | json }}</pre>
+
+  </main>
+
+  </body>
+</html>
