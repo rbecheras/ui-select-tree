@@ -11,26 +11,28 @@
 
 require('./src/ui-select-tree.module');
 
-},{"./src/ui-select-tree.module":6}],2:[function(require,module,exports){
-
-},{}],3:[function(require,module,exports){
+},{"./src/ui-select-tree.module":5}],2:[function(require,module,exports){
 'use strict';
 
 module.exports = [function(){
 
   var tree;
 
-  this.loadtree = function(data){
+  this.loadTree = function(data){
     tree = data;
   };
 
   this.$get = function(){
-    return tree;
+    return {
+      load: function (id) {
+        return tree[id];
+      }
+    };
   };
 
 }];
 
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 'use strict';
 
 module.exports = ['$timeout',function($timeout) {
@@ -45,7 +47,7 @@ module.exports = ['$timeout',function($timeout) {
   };
 }];
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 module.exports = ['groupFactory','$timeout', function(groupFactory, $timeout) {
@@ -78,40 +80,31 @@ module.exports = ['groupFactory','$timeout', function(groupFactory, $timeout) {
   };
 }];
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
-var fs = require('fs');
+
 
 var uiSelectTreeDirective = require('./ui-select-tree.directive');
 var uiSelectFocuserDirective = require('./ui-select-focuser.directive');
 var groupFactoryProvider = require('./group-factory.provider');
 
+var templateContent;
 
-var uiSelectTreeModule = angular.module('ui.select-tree', ['ui.select', 'ngSanitize']);
+var uiSelectTreeModule = angular.module('ui.selectTree', ['ui.select', 'ngSanitize']);
 
 uiSelectTreeModule.directive('uiSelectTree',uiSelectTreeDirective);
 uiSelectTreeModule.directive('uiSelectFocuser',uiSelectFocuserDirective);
-uiSelectTreeModule.provider('groupFactoryProvider',groupFactoryProvider);
+uiSelectTreeModule.provider('groupFactory',groupFactoryProvider);
 
-fs.readFileSync('./selectize-choices.tpl.html',function(err, data){
-  if (err) {
-    console.error('Impossible to read selectize-choices.tpl.html');
-    throw err;
-  }
-  uiSelectTreeModule.run(['$templateCache', function ($templateCache) {
-    $templateCache.put('selectize-choices.tpl.html', data);
-  }]);
-});
+templateContent = "<div ng-show=\"$select.open\"\n  class=\"ui-select-choices group-tree selectize-dropdown single\">\n  <div ng-show=\"breadcrumbs.length > 1\" class=\"ui-select-breadcrumbs\">\n    <span class=\"ui-breadcrumb\" ng-repeat=\"crumb in breadcrumbs\"\n       ng-click=\"navigateBackTo(crumb, $select)\">\n       {{crumb.title}}\n    </span>\n  </div>\n  <div class=\"ui-select-choices-content selectize-dropdown-content\">\n    <div class=\"ui-select-choices-group optgroup\">\n      <div ng-show=\"$select.isGrouped\"\n        class=\"ui-select-choices-group-label optgroup-header\">\n        {{$group}}\n      </div>\n      <div class=\"ui-select-choices-row\">\n        <div class=\"option ui-select-choices-row-inner\"\n           data-selectable=\"\">\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n";
+uiSelectTreeModule.run(['$templateCache', function ($templateCache) {
+  $templateCache.put('selectize-choices.tpl.html', templateContent);
+}]);
 
-fs.readFileSync('./ui-select-tree.tpl.html',function(err, data){
-  if (err) {
-    console.error('Impossible to read ui-select-tree.tpl.html');
-    throw err;
-  }
-  uiSelectTreeModule.run(['$templateCache', function ($templateCache) {
-    $templateCache.put('ui-select-tree.tpl.html', data);
-  }]);
-});
+templateContent = "<ui-select ng-model=\"model.$selected\" ui-select-focuser theme=\"selectize\">\n  <ui-select-match placeholder=\"Select a group\">\n    {{ $select.selected.title }}\n  </ui-select-match>\n\n  <ui-select-choices repeat=\"group in groups | filter: $select.search\">\n    <div>\n      <span ng-bind-html=\"group.title | highlight: $select.search\"></span>\n      <span ng-bind-html=\"'('+group.size+' users)'\"></span>\n      <a href ng-show=\"group.parent\" class=\"goto-child-group\" ng-click=\"loadChildGroupsOf(group, $select)\">\n        <i class=\"fa fa-angle-right\"></i>\n      </a>\n    </div>\n  </ui-select-choices>\n</ui-select>\n";
+uiSelectTreeModule.run(['$templateCache', function ($templateCache) {
+  $templateCache.put('ui-select-tree.tpl.html', templateContent);
+}]);
 
-},{"./group-factory.provider":3,"./ui-select-focuser.directive":4,"./ui-select-tree.directive":5,"fs":2}]},{},[1]);
+},{"./group-factory.provider":2,"./ui-select-focuser.directive":3,"./ui-select-tree.directive":4}]},{},[1]);
