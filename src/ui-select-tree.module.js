@@ -6,29 +6,20 @@ var uiSelectTreeDirective = require('./ui-select-tree.directive');
 var uiSelectFocuserDirective = require('./ui-select-focuser.directive');
 var groupFactoryProvider = require('./group-factory.provider');
 
+var templateContent;
 
 var uiSelectTreeModule = angular.module('ui.selectTree', ['ui.select', 'ngSanitize']);
 
 uiSelectTreeModule.directive('uiSelectTree',uiSelectTreeDirective);
 uiSelectTreeModule.directive('uiSelectFocuser',uiSelectFocuserDirective);
-uiSelectTreeModule.provider('groupFactoryProvider',groupFactoryProvider);
+uiSelectTreeModule.provider('groupFactory',groupFactoryProvider);
 
-fs.readFileSync('./selectize-choices.tpl.html',function(err, data){
-  if (err) {
-    console.error('Impossible to read selectize-choices.tpl.html');
-    throw err;
-  }
-  uiSelectTreeModule.run(['$templateCache', function ($templateCache) {
-    $templateCache.put('selectize-choices.tpl.html', data);
-  }]);
-});
+templateContent = fs.readFileSync('src/selectize-choices.tpl.html','utf-8');
+uiSelectTreeModule.run(['$templateCache', function ($templateCache) {
+  $templateCache.put('selectize-choices.tpl.html', templateContent);
+}]);
 
-fs.readFileSync('./ui-select-tree.tpl.html',function(err, data){
-  if (err) {
-    console.error('Impossible to read ui-select-tree.tpl.html');
-    throw err;
-  }
-  uiSelectTreeModule.run(['$templateCache', function ($templateCache) {
-    $templateCache.put('ui-select-tree.tpl.html', data);
-  }]);
-});
+templateContent = fs.readFileSync('src/ui-select-tree.tpl.html','utf-8');
+uiSelectTreeModule.run(['$templateCache', function ($templateCache) {
+  $templateCache.put('ui-select-tree.tpl.html', templateContent);
+}]);
