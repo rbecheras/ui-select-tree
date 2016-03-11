@@ -28,6 +28,10 @@ module.exports = function (grunt) {
       },
       uglify: {
         dist: {
+          options: {
+            report: 'min',
+            sourceMap: true
+          },
           files: {
             'dist/ui-select-tree.min.js': ['dist/ui-select-tree.js']
           }
