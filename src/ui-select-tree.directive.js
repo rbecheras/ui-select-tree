@@ -27,6 +27,6 @@ module.exports = ['groupFactory','$timeout', function(groupFactory, $timeout) {
         scope.$broadcast('uiSelectFocus');
       };
     },
-    templateUrl: '/ui-tree-select.html'
+    templateUrl: 'ui-select-tree.tpl.html'
   };
 }];
