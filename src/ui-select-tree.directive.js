@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = ['groupFactory','$timeout', function(groupFactory, $timeout) {
+
+  console.log('ui-select-tree directive');
+
   return {
     restrict: 'E',
     scope: { model: '=' },
