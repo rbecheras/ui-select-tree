@@ -44,6 +44,16 @@ module.exports = function (grunt) {
           }
         }
       },
+      copy: {
+        main: {
+          files: [{
+            expand: true,
+            cwd: 'src/',
+            src: ['ui-select-tree.css'],
+            dest: 'dist/'}
+          ],
+        },
+      },
       bump: {
         options: {
           files: ['package.json','bower.json'],
@@ -64,5 +74,5 @@ module.exports = function (grunt) {
       },
     });
 
-    grunt.registerTask('default', ['jshint', 'browserify', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['jshint', 'browserify', 'uglify', 'cssmin','copy']);
 };
