@@ -9,6 +9,8 @@ module.exports = function (grunt) {
       jshint: {
         options: {
           node: true,
+          browser: true,
+          browserify: true,
           globals: {
             'angular': true,
             '_': true
