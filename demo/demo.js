@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  var app = angular.module('demo',['ui-select-tree']);
+  var app = angular.module('demo',['ui.selectTree']);
 
   app.config(function(groupFactoryProvider){
     groupFactoryProvider.loadTree({
