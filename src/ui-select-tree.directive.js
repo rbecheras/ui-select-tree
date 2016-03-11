@@ -1,5 +1,16 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name ui.selectTree.directive:uiSelectTree
+ * @element ui-select-tree
+ * @requires ui.select
+ * @function
+ *
+ * @description 
+ * Provides tree selection on top of angular-ui/ui-select
+ *
+ */
 module.exports = ['groupFactory','$timeout', function(groupFactory, $timeout) {
 
   return {
