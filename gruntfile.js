@@ -33,6 +33,17 @@ module.exports = function (grunt) {
           }
         }
       },
+      cssmin: {
+        options: {
+          report: true,
+          sourceMap: true
+        },
+        target: {
+          files:{
+            'dist/ui-select-tree.min.css': 'src/ui-select-tree.css'
+          }
+        }
+      },
       bump: {
         options: {
           files: ['package.json','bower.json'],
@@ -53,5 +64,5 @@ module.exports = function (grunt) {
       },
     });
 
-    grunt.registerTask('default', ['jshint', 'browserify', 'uglify']);
+    grunt.registerTask('default', ['jshint', 'browserify', 'uglify', 'cssmin']);
 };
