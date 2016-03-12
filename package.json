@@ -1,6 +1,6 @@
 {
   "name": "ui-select-tree",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An angular module that extends ui-select module of the angular-ui toolkit, to provide selection in a tree instead of a flat list.",
   "main": "ui-select-tree.js",
   "devDependencies": {
@@ -12,6 +12,7 @@
     "grunt-contrib-cssmin": "^1.0.0",
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-contrib-uglify": "^0.10.0",
+    "grunt-ngdocs": "^0.2.9",
     "load-grunt-tasks": "^3.3.0"
   },
   "scripts": {

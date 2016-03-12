@@ -78,7 +78,13 @@ module.exports = function (grunt) {
           regExp: false
         }
       },
+      ngdocs: {
+        options: {
+          html5Mode: false
+        },
+        all: ['src/**/*.js']
+      },
     });
 
-    grunt.registerTask('default', ['jshint', 'browserify', 'uglify', 'cssmin','copy']);
+    grunt.registerTask('default', ['jshint', 'browserify', 'uglify', 'cssmin','copy','ngdocs']);
 };
