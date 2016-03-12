@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @ngdoc overview
+ * @name ui.selectTree
+ * @description AWESOME
+ */
+
 var fs = require('fs');
 
 var uiSelectTreeDirective = require('./ui-select-tree.directive');

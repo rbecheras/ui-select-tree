@@ -7,7 +7,7 @@
  * @requires ui.select
  * @function
  *
- * @description 
+ * @description
  * Provides tree selection on top of angular-ui/ui-select
  *
  */

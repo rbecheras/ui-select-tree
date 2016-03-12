@@ -1,5 +1,17 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @serviceProvider
+ * @name ui.selectTree.provider:groupFactory
+ * @requires ui.select
+ * @module ui.selectTree
+ * @function
+ *
+ * @description
+ * Provides tree selection on top of angular-ui/ui-select
+ *
+ */
 module.exports = [function(){
 
   var tree;
