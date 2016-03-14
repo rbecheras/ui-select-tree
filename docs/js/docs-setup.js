@@ -32,12 +32,12 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "ui.selectTree.provider:groupFactory",
-      "shortName": "groupFactory",
+      "id": "ui.selectTree.provider:GroupFactory",
+      "shortName": "GroupFactory",
       "type": "service",
       "moduleName": "ui.selectTree",
-      "shortDescription": "Provides tree selection on top of angular-ui/ui-select",
-      "keywords": "angular-ui api provider select selection selecttree service top tree ui"
+      "shortDescription": "The factory is used by directives to load the ui-select list with children on selection change",
+      "keywords": "api change children directives factory list load provider select selection selecttree service ui ui-select"
     }
   ],
   "apis": {
