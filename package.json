@@ -1,6 +1,6 @@
 {
   "name": "ui-select-tree",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "An angular module that extends ui-select module of the angular-ui toolkit, to provide selection in a tree instead of a flat list.",
   "main": "ui-select-tree.js",
   "devDependencies": {
