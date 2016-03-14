@@ -4,7 +4,7 @@
  * @ngdoc service
  * @serviceProvider
  * @constructor
- * @name ui.selectTree.provider:groupFactory
+ * @name ui.selectTree.provider:GroupFactory
  * @requires ui.select
  * @module ui.selectTree
  * @function
@@ -13,7 +13,7 @@
  * The factory is used by directives to load the ui-select list with children on selection change
  *
  */
- function groupFactoryProvider(){
+ function GroupFactoryProvider(){
 
    /**
     * The tree data store
@@ -34,21 +34,21 @@
    };
 
    /**
-    * Implementation of the $get method of the angular module#factory interface. It returns the groupFactory service.
+    * Implementation of the $get method of the angular module#factory interface. It returns the GroupFactory service.
     * @method
-    * @returns {object} the groupFactory instance.
+    * @returns {object} the GroupFactory instance.
     */
    this.$get = function(){
      /**
-      * The groupFactory instance.
-      * @name groupFactory
+      * The GroupFactory instance.
+      * @name GroupFactory
       * @type {object}
       */
      return {
        /**
         * Load the ui-select list by a sub-group given by its specific id.
         * @method
-        * @memberof groupFactory
+        * @memberof GroupFactory
         * @param {integer} id The item id.
         * @returns The requested item.
         */
@@ -62,4 +62,4 @@
 
 // Annotate the angular factory, and export it.
 // No dependency, so no supplementary annotation, just wrap the factory in an array.
-module.exports = [groupFactoryProvider];
+module.exports = [GroupFactoryProvider];
