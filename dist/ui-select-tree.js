@@ -17,32 +17,66 @@ require('./src/ui-select-tree.module');
 /**
  * @ngdoc service
  * @serviceProvider
- * @name ui.selectTree.provider:groupFactory
+ * @constructor
+ * @name ui.selectTree.provider:GroupFactory
  * @requires ui.select
  * @module ui.selectTree
  * @function
  *
  * @description
- * Provides tree selection on top of angular-ui/ui-select
+ * The factory is used by directives to load the ui-select list with children on selection change
  *
  */
-module.exports = [function(){
+ function GroupFactoryProvider(){
 
-  var tree;
+   /**
+    * The tree data store
+    * @property
+    * @private
+    *
+    */
+   var tree;
 
-  this.loadTree = function(data){
-    tree = data;
-  };
+   /**
+    * The method used in a config block, to load a full tree formatted data in the factory.
+    * @method
+    * @param {object} data An indexed object (keys are numbers starting at zero) where members are arrays of objects (items to select)
+    * @returns void
+    */
+   this.loadTree = function(data){
+     tree = data;
+   };
 
-  this.$get = function(){
-    return {
-      load: function (id) {
-        return tree[id];
-      }
-    };
-  };
+   /**
+    * Implementation of the $get method of the angular module#factory interface. It returns the GroupFactory service.
+    * @method
+    * @returns {object} the GroupFactory instance.
+    */
+   this.$get = function(){
+     /**
+      * The GroupFactory instance.
+      * @name GroupFactory
+      * @type {object}
+      */
+     return {
+       /**
+        * Load the ui-select list by a sub-group given by its specific id.
+        * @method
+        * @memberof GroupFactory
+        * @param {integer} id The item id.
+        * @returns The requested item.
+        */
+       load: function (id) {
+         return tree[id];
+       }
+     };
+   };
 
-}];
+ }
+
+// Annotate the angular factory, and export it.
+// No dependency, so no supplementary annotation, just wrap the factory in an array.
+module.exports = [GroupFactoryProvider];
 
 },{}],3:[function(require,module,exports){
 'use strict';
@@ -138,14 +172,14 @@ uiSelectTreeModule.directive('uiSelectTree',uiSelectTreeDirective);
 uiSelectTreeModule.directive('uiSelectFocuser',uiSelectFocuserDirective);
 uiSelectTreeModule.provider('groupFactory',groupFactoryProvider);
 
-templateContent = "<div ng-show=\"$select.open\"\n  class=\"ui-select-choices group-tree selectize-dropdown single\">\n  <div class=\"\">\n    {{breadcrumbs.length}}\n  </div>\n  <div ng-show=\"breadcrumbs.length > 1\" class=\"ui-select-breadcrumbs\">\n    <span class=\"ui-breadcrumb\" ng-repeat=\"crumb in breadcrumbs\"\n       ng-click=\"navigateBackTo(crumb, $select)\">\n       {{crumb.title}}\n    </span>\n  </div>\n  <div class=\"ui-select-choices-content selectize-dropdown-content\">\n    <div class=\"ui-select-choices-group optgroup\">\n      <div ng-show=\"$select.isGrouped\"\n        class=\"ui-select-choices-group-label optgroup-header\">\n        {{$group}}\n      </div>\n      <div class=\"ui-select-choices-row\">\n        <div class=\"option ui-select-choices-row-inner\"\n           data-selectable=\"\">\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n";
+templateContent = "<div ng-show=\"$select.open\"\n  class=\"ui-select-choices group-tree selectize-dropdown single\">\n  <div ng-show=\"breadcrumbs.length > 1\" class=\"ui-select-breadcrumbs\">\n    <span class=\"ui-breadcrumb\" ng-repeat=\"crumb in breadcrumbs\"\n       ng-click=\"navigateBackTo(crumb, $select)\">\n       {{crumb.title}}\n    </span>\n  </div>\n  <div class=\"ui-select-choices-content selectize-dropdown-content\">\n    <div class=\"ui-select-choices-group optgroup\">\n      <div ng-show=\"$select.isGrouped\"\n        class=\"ui-select-choices-group-label optgroup-header\">\n        {{$group}}\n      </div>\n      <div class=\"ui-select-choices-row\">\n        <div class=\"option ui-select-choices-row-inner\"\n           data-selectable=\"\">\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n";
 uiSelectTreeModule.run(['$templateCache', function ($templateCache) {
-  $templateCache.put('selectize/choices.tpl.html', templateContent);
+  $templateCache.put('selectize-choices.tpl.html', templateContent);
 }]);
 
 templateContent = "<ui-select ng-model=\"model.$selected\" ui-select-focuser theme=\"selectize\">\n  <ui-select-match placeholder=\"Select a group\">\n    {{ $select.selected.title }}\n  </ui-select-match>\n\n  <ui-select-choices repeat=\"group in groups | filter: $select.search\">\n    <div>\n      <span ng-bind-html=\"group.title | highlight: $select.search\"></span>\n      <span ng-bind-html=\"'('+group.size+' users)'\"></span>\n      <a href ng-show=\"group.parent\" class=\"goto-child-group\" ng-click=\"loadChildGroupsOf(group, $select)\">\n        <i class=\"fa fa-angle-right\"></i>\n      </a>\n    </div>\n  </ui-select-choices>\n</ui-select>\n";
 uiSelectTreeModule.run(['$templateCache', function ($templateCache) {
-  // $templateCache.put('ui-select-tree.tpl.html', templateContent);
+  $templateCache.put('ui-select-tree.tpl.html', templateContent);
 }]);
 
 },{"./group-factory.provider":2,"./ui-select-focuser.directive":3,"./ui-select-tree.directive":4}]},{},[1]);
